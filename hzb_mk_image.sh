@@ -10,12 +10,12 @@
 
 #set -x
 
-if [ x"$1" == x"" ]; then
-	echo USAGE: $0 DEVICE_NAME_OR_MASK
+if [ x"$@" == x"" ]; then
+	echo USAGE: $0 DEVICE_NAME_OR_MASK [DEVICE_NAME [DEVICE_NAME ...]]
 	exit -1
 fi
 
-DEVICE_MASK="$1"
+DEVICE_MASK="$@"
 
 for DEVICE in $DEVICE_MASK; do
 	BASENAME=$(basename "$DEVICE")
