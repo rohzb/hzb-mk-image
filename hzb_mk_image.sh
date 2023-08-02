@@ -3,6 +3,8 @@
 #
 # Automatic image creation with squashfs
 #
+# version 1.3	- show device names if run without parameters (Ruslan)
+#		- updated help (Ruslan)
 # Version 1.2 	- auto elevate privileges
 # Version 1.1 	- ask for deletion of on old images (Ruslan)
 #		- allow multiple input devices (Ruslan)
@@ -15,6 +17,11 @@
 # show usage info if there run without parameters
 if [ x"$@" == x"" ]; then
 	echo USAGE: $0 DEVICE_NAME_OR_MASK [DEVICE_NAME [DEVICE_NAME ...]]
+	echo ""
+	echo "Example: $0 /dev/sdd? # all partitions on /dev/sdd"
+	echo ""
+	echo "Known devices are:"
+	lsblk
 	exit -1
 fi
 
