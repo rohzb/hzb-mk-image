@@ -3,6 +3,7 @@
 #
 # Automatic image creation with squashfs
 #
+# Version 1.2 	- auto elevate privileges
 # Version 1.1 	- ask for deletion of on old images (Ruslan)
 #		- allow multiple input devices (Ruslan)
 # Version 1.0 	- basic functionality (Ruslan) 
@@ -15,6 +16,12 @@
 if [ x"$@" == x"" ]; then
 	echo USAGE: $0 DEVICE_NAME_OR_MASK [DEVICE_NAME [DEVICE_NAME ...]]
 	exit -1
+fi
+
+# Ensure that this script runs under sudp
+if [[ $EUID -ne 0 ]];
+then
+    exec sudo /bin/bash "$0" "$@"
 fi
 
 DEVICE_MASK="$@"
@@ -44,6 +51,8 @@ for DEVICE in $DEVICE_MASK; do
 	fi
 
 	# create squashfs image
-	mksquashfs /tmp/dummy $SQUASH -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror"
+	if [ ! -f $SQUASH ]; then 
+		mksquashfs /tmp/dummy $SQUASH -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror"
+	fi
 done
 
