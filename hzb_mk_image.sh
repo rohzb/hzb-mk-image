@@ -3,7 +3,8 @@
 #
 # Automatic image creation with squashfs
 #
-# Version 1.0 - basic functionality, 
+# Version 1.1  - ask for deletion of on old images
+# Version 1.0 - basic functionality (Ruslan) 
 #
 #################################################################################
 
@@ -23,11 +24,19 @@ for DEVICE in $DEVICE_MASK; do
 
 	echo Processing device $DEVICE. Will create $SQUASH image with $IMAGE data inside
 
-	mkdir /tmp/dummy
+	mkdir -p /tmp/dummy
 
-	rm $SQUASH
-
-	mksquashfs /tmp/dummy $SQUASH -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror"
-	rmdir /tmp/dummy
+	if [ -f $SQUASH ]; then 
+		while true; do
+			read -p "Image $SQUASH already exists! Do you want to delte it? [y/n] " yn
+			case $yn in 
+				[yY]) rm $SQUASH
+					break;;
+				[nN]) break;;
+				* ) echo invalid response;;
+			esac
+		done
+	fi
+	echo mksquashfs /tmp/dummy $SQUASH -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror"
 done
 
