@@ -3,6 +3,8 @@
 #
 # Automatic image creation with squashfs
 #
+# version 1.5	- Using progress from 'dd' - helps to copy speed and progress
+#					 better (Ruslan)
 # version 1.4	- fixed error with multiple parameters (Ruslan)
 # version 1.3	- show device names if run without parameters (Ruslan)
 #		- updated help (Ruslan)
@@ -60,7 +62,7 @@ for DEVICE in $DEVICE_MASK; do
 
 	# create squashfs image
 	if [ ! -f $SQUASH ]; then 
-		mksquashfs /tmp/dummy $SQUASH -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror"
+		mksquashfs /tmp/dummy $SQUASH -no-progress -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror status=progress"
 	fi
 done
 
