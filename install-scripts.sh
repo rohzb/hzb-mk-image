@@ -14,6 +14,9 @@ then
     exec sudo /bin/bash "$0" "$@"
 fi
 
+# Ensure that current dir is correct
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPT_DIR
 
 # Do the installation
 install -m 0755 hzb_* /usr/local/bin
