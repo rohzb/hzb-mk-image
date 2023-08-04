@@ -1,5 +1,9 @@
 # Helper scripts to pull images from the hard drives
 
+## Installation
+
+Use helper script to run the installation: `bash -e install-scripts.sh`
+
 ## Image backup workflow
 
 1. Boot from a memory stick
