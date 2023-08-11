@@ -1,0 +1,47 @@
+*.7xll*
+aaq*.bat
+instructions_read_me.txt
+$Recycle.Bin
+$RECYCLE.BIN
+$WINDOWS.~BT
+$WinREAgent
+
+Dell
+DumpStack.log.tmp
+Intel
+PerfLogs
+Program Files
+Program Files (x86)
+ProgramData
+Programme
+Recovery
+System Volume Information
+Windows
+hiberfil.sys
+pagefile.sys
+swapfile.sys
+
+3D\ Objects
+Anwendungsdaten
+
+Contacts
+Cookies
+Druckumgebung
+EasternGraphics
+Favorites
+IntelGraphicsProfiles
+Links
+Lokale Einstellungen
+Music
+NTUSER.DAT*
+Netzwerkumgebung
+OneDrive
+
+Recent
+Saved Games
+Searches
+SendTo
+Startmenü
+Videos
+Vorlagen
+ntuser*

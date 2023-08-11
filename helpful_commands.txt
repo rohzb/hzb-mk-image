@@ -1,0 +1,3 @@
+find /media/ubuntu/Data/ -newermt $(date +%Y-%m-%d -d "2023-06-13") -print
+
+rsync -avr --progress --exclude-from=/media/ubuntu/datatransferXX/scripts/exclude.txt --files-from=$(find /medina/ubuntu/DATA -newermt $(date +%Y-%m-%d -d "2023-06-13")) . /media/ubuntu/xxx

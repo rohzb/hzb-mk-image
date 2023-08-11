@@ -62,7 +62,7 @@ for DEVICE in $DEVICE_MASK; do
 
 	# create squashfs image
 	if [ ! -f $SQUASH ]; then 
-		mksquashfs /tmp/dummy $SQUASH -no-progress -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror status=progress"
+		mksquashfs /tmp/dummy $SQUASH -no-progress -Xcompression-level 2 -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror status=progress"
 	fi
 done
 
