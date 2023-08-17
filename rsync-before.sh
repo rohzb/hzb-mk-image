@@ -1,23 +1,27 @@
 #!/bin/bash
 
 function usage {
-	echo "usage: $(basename ${0}) <src> <dst>"
+	echo "usage: $(basename ${0}) <src> <dst> [extra-opts]"
 	exit
 }
 
 DIR=$(dirname ${0})
 
-if [[ ! -z S1 ]];
+if [[ ! -z ${1} ]];
  then 
-	SRC=${1}; 
+	SRC="${1}"
+	shift
 else
 	usage
 fi
-if [[ ! -z S2 ]];
+if [[ ! -z $1 ]];
 then 
-	DEST=${2}
+	DEST="${1}"
+	shift
 else 
 	usage
 fi
 
-rsync -avz --exclude-from=${DIR}/exclude.txt --exclude-from=<(${DIR}/find-files-after.sh ${SRC}) ${SRC} ${DEST}
+OPTS="${@}"
+
+rsync -avz "${OPTS}" --exclude-from="${DIR}/exclude.txt" --exclude-from=<(${DIR}/find-files-between.sh "${SRC}") "${SRC}" "${DEST}"

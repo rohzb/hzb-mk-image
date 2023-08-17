@@ -8,4 +8,4 @@ else
 	DIR=${1}
 fi
 
-find ${DIR} -newermt $(date +"%Y-%m-%d" --date "2023-06-13") -print
+find ${DIR} -type f -newermt $(date +"%Y-%m-%d" --date "2023-06-13") -print

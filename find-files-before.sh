@@ -10,4 +10,4 @@ fi
 
 echo $DIR
 
-find $DIR ! -newermt $(date +"%Y-%m-%d" --date "2023-06-14")
+find $DIR -type f ! -newermt $(date +"%Y-%m-%d" --date "2023-06-14")

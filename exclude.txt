@@ -5,7 +5,9 @@ $Recycle.Bin
 $RECYCLE.BIN
 $WINDOWS.~BT
 $WinREAgent
-
+anaconda3
+pc-gruppe
+local_admin
 Dell
 DumpStack.log.tmp
 Intel
