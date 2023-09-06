@@ -24,4 +24,4 @@ fi
 
 OPTS="${@}"
 
-rsync -avz "${OPTS}" --exclude-from="${DIR}/exclude.txt" --exclude-from=<(${DIR}/find-files-between.sh "${SRC}") "${SRC}" "${DEST}"
+rsync -av ${OPTS} --exclude-from="${DIR}/exclude.txt" --exclude-from=<(${DIR}/find-files-between.sh "${SRC}") "${SRC}" "${DEST}"
