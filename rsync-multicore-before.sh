@@ -24,11 +24,4 @@ fi
 
 OPTS="${@}"
 
-BASEDIR=${SRC%/*}
-BASENAME=${SRC##*/}
-
-if [ -z "$BASENAME" ]; then
-    BASENAME="."
-fi
-
-${DIR}/find-files-before-mod.sh "${SRC}" | rsync -av ${OPTS} --exclude-from="${DIR}/exclude.txt" --files-from=- --from0 "${BASEDIR}" "${DEST}"
+ls ${SRC} | xargs -n1 -P4 -I% rsync -Pa "${OPTS}" --exclude-from="${DIR}/exclude.txt" --exclude-from=<(${DIR}/find-files-between.sh "%") % "${DEST}"
