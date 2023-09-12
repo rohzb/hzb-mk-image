@@ -3,6 +3,7 @@
 #
 # Automatic image creation with squashfs
 #
+# version 1.6	- return an exit code for errors, but continue (Lutz)
 # version 1.5	- Using progress from 'dd' - helps to copy speed and progress
 #					 better (Ruslan)
 # version 1.4	- fixed error with multiple parameters (Ruslan)
@@ -35,6 +36,8 @@ then
 fi
 
 DEVICE_MASK="$@"
+RESULT=0
+EXITCODE=0
 
 # Iterate over all parameters/mask
 for DEVICE in $DEVICE_MASK; do
@@ -50,9 +53,9 @@ for DEVICE in $DEVICE_MASK; do
 	# check if an old image already there, ask to delete if yes
 	if [ -f $SQUASH ]; then 
 		while true; do
-			read -p "Image $SQUASH already exists! Do you want to delte it? [y/n] " yn
+			read -p "Image $SQUASH already exists! Do you want to delete it? [y/n] " yn
 			case $yn in 
-				[yY]) rm $SQUASH
+				[yY]) rm -f $SQUASH
 					break;;
 				[nN]) break;;
 				* ) echo invalid response;;
@@ -63,6 +66,8 @@ for DEVICE in $DEVICE_MASK; do
 	# create squashfs image
 	if [ ! -f $SQUASH ]; then 
 		mksquashfs /tmp/dummy $SQUASH -no-progress -Xcompression-level 2 -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror status=progress"
+		RESULT=$?
+		test $RESULT -gt $EXITCODE && EXITCODE=$RESULT
 	fi
 done
-
+exit $EXITCODE

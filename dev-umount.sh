@@ -10,6 +10,7 @@ fi
 
 SQUASH=/mnt/squash/$1
 VOLUMES=/mnt/volumes/$1
+TRANSFER=/home/ubuntu/transfer/$1
 
 if [[ -d $VOLUMES ]]; then
     echo found volumes dirs $VOLUMES
@@ -39,6 +40,14 @@ if [[ -d $SQUASH ]]; then
     sudo rmdir $SQUASH
 else
     echo squash dirs not found $SQUASH
+fi
+
+if [[ -d $TRANSFER ]]; then
+    echo "The local image uses space of $(du -sh ${IMAGESRC}) ."
+    read -p "Should the local image files also deleted (y/n)?" -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        rm -rf $TRANSFER
+    fi
 fi
 
 echo done

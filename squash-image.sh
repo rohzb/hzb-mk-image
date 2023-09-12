@@ -21,6 +21,8 @@ fi
 BASE_DIR=$(dirname $0)
 WORKING_DIR="${BASE_DIR}/.."
 IMAGE_DIR="${WORKING_DIR}/images"
+RESULT=0
+EXITCODE=0
 
 # nach Hostnamen fragen
 echo "What's the hostname of this machine?"
@@ -71,6 +73,7 @@ done
 # Zusammenfassung anzeigen und Prozess starten
 if [[ ${#SELECTED_DISK[@]} -gt 0 ]]; then
     fdisk -l ${SELECTED_DISK[@]}
+    RESULT=0
     while true; do
         read -p "Do you wish to image this disk(s) to ${IMAGE_DIR}/${HOSTNAME} [y|n]? " yn
         case $yn in
@@ -79,6 +82,8 @@ if [[ ${#SELECTED_DISK[@]} -gt 0 ]]; then
                     mkdir -p -m 777 "${IMAGE_DIR}/${HOSTNAME}"
                     cd "${IMAGE_DIR}/${HOSTNAME}"
                     $(pwd)/../../scripts/hzb_pc_info.sh
+                    RESULT=$?
+                    test $RESULT -gt $EXITCODE && EXITCODE=$RESULT
                     
                     # ausgewählte Disk parsen und Partitionen ermitteln
                     for i in $(seq 1 ${#SELECTED_DISK[@]})
@@ -89,6 +94,8 @@ if [[ ${#SELECTED_DISK[@]} -gt 0 ]]; then
                         done
                     done
                     $(pwd)/../../scripts/hzb_mk_image.sh ${PART[@]}
+                    RESULT=$?
+                    test $RESULT -gt $EXITCODE && EXITCODE=$RESULT
                     break;;
             [Nn]* ) exit;;
             * ) echo "Please answer yes or no.";;
@@ -97,9 +104,13 @@ if [[ ${#SELECTED_DISK[@]} -gt 0 ]]; then
 
 else
     echo "Nothing to do...abort"
-    exit
+    EXITCODE=1
 fi
 
-exit 0
-
-
+if [ $EXITCODE -ne 0 ]; then
+    echo ""
+    echo "something could be wrong: look at the output above!"
+    echo "    EXITCODE=$EXITCODE"
+    read -p "press Enter ..."
+fi
+exit $EXITCODE

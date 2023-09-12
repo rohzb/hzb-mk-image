@@ -31,4 +31,4 @@ if [ -z "$BASENAME" ]; then
     BASENAME="."
 fi
 
-${DIR}/find-files-before-mod.sh "${SRC}" | rsync -av ${OPTS} --exclude-from="${DIR}/exclude.txt" --files-from=- --from0 "${BASEDIR}" "${DEST}"
+${DIR}/find-files-before.sh "${SRC}" | rsync -av ${OPTS} --exclude-from="${DIR}/exclude.txt" --files-from=- --from0 "${BASEDIR}" "${DEST}"
