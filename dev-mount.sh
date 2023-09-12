@@ -3,7 +3,7 @@
 echo Script $0
 echo $#
 
-if [[ $# -ne 1 -o -z "$1" ]]
+if [ $# -ne 1 -o -z "$1" ]
 then
     echo usage: $0 '<computername>'
     exit 1
@@ -11,13 +11,13 @@ fi
 
 TRANSFER=/home/ubuntu/transfer/$1
 
-if [[ -d ${TRANSFER} ]]
+if [ -d ${TRANSFER} ]
 then
     echo ${TRANSFER} found
 else
     echo ${TRANSFER} not found
     IMAGESRC=$(find /mnt -maxdepth 2 -iwholename "/mnt/images*/$1" -type d|tail -n 1)
-    if [[ -d ${IMAGESRC} ]]; then
+    if [ -d ${IMAGESRC} ]; then
         echo "found image directory on NAS: $(du -sh ${IMAGESRC})"
         read -p "Should the image copied from NAS (y/n)?" -n 1 -r
         if [[ $REPLY =~ ^[Yy]$ ]]; then

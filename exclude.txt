@@ -1,49 +1,61 @@
+# Exclude list for rsync (NOTE: rsync FILTER RULES apply, see man page)
+# NOTE: directories need /** at the end! 
+
+# 1. Encrypted files and instructions for encryption
 *.7xllxqo6q
 aaq*.bat
 instructions_read_me.txt
-$Recycle.Bin
-$RECYCLE.BIN
-$WINDOWS.~BT
-$WinREAgent
-anaconda3
-pc-gruppe
-local_admin
-Dell
+
+# 2. Exclude various caches
+cache2/**
+Cache/**
+cache/**
+
+# 3. Exclude some typical Windows and Program directories
+$Recycle.Bin/**
+$RECYCLE.BIN/**
+$WINDOWS.~BT/**
+$WinREAgent/**
+Anaconda3/**
+anaconda3/**
+pc-gruppe/**
+local_admin/**
+Dell/**
 DumpStack.log.tmp
-Intel
-PerfLogs
-Program Files
-Program Files (x86)
-ProgramData
-Programme
-Recovery
-System Volume Information
-Windows
+Intel/**
+PerfLogs/**
+Program Files/**
+Program Files (x86)/**
+ProgramData/**
+Programme/**
+Recovery/**
+System Volume Information/**
+Windows/**
 hiberfil.sys
 pagefile.sys
 swapfile.sys
 
-3D\ Objects
-Anwendungsdaten
+3D\ Objects/**
+Anwendungsdaten/**
 
-Contacts
-Cookies
-Druckumgebung
-EasternGraphics
-Favorites
-IntelGraphicsProfiles
-Links
-Lokale Einstellungen
-Music
+Contacts/**
+Cookies/**
+Druckumgebung/**
+EasternGraphics/**
+Favorites/**
+IntelGraphicsProfiles/**
+Links/**
+Lokale Einstellungen/**
+Music/**
 NTUSER.DAT*
-Netzwerkumgebung
-OneDrive
+Netzwerkumgebung/**
+OneDrive/**
 
-Recent
-Saved Games
-Searches
-SendTo
-Startmenü
-Videos
-Vorlagen
+Recent/**
+Saved Games/**
+Searches/**
+SendTo/**
+Startmenü/**
+Videos/**
+Vorlagen/**
 ntuser*
