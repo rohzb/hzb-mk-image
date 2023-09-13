@@ -20,7 +20,7 @@ else
     if [ -d ${IMAGESRC} ]; then
         echo "found image directory on NAS: $(du -sh ${IMAGESRC})"
         read -p "Should the image copied from NAS (y/n)?" -n 1 -r
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
+        if [[ $REPLY =~ ^[YyZz]$ ]]; then
 	    echo ""
             mkdir -p ${TRANSFER} > /dev/null 2>&1
             cp -iv --target-directory ${TRANSFER} ${IMAGESRC}/* || exit $?
@@ -44,7 +44,7 @@ done
 
 read -p "Continue (y/n)?" -n 1 -r
 echo # new line
-if [[ ! $REPLY =~ ^[Yy]$ ]]
+if [[ ! $REPLY =~ ^[YyZz]$ ]]
 then
     echo aborted
     exit 1
@@ -58,7 +58,7 @@ for simage in $TRANSFER/*.squashfs; do
 
     read -p "Mount (y/n)?" -n 1 -r
     echo # new line
-    if [[ $REPLY =~ ^[Yy]$ ]]
+    if [[ $REPLY =~ ^[YyZz]$ ]]
     then
 	echo mounting ....
 	echo   mkdir -p $SQUASH/$device

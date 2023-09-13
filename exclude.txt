@@ -1,5 +1,5 @@
 # Exclude list for rsync (NOTE: rsync FILTER RULES apply, see man page)
-# NOTE: directories need /** at the end! 
+# NOTE: directories need /** at the end!
 
 # 1. Encrypted files and instructions for encryption
 *.7xllxqo6q

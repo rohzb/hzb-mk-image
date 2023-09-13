@@ -4,7 +4,7 @@
 # Automatic image creation with squashfs
 #
 # Version 1.1 	- removed "-l" from lsblk, elevate privileges only once (Ruslan)
-# Version 1.0 	- basic functionality (Ruslan) 
+# Version 1.0 	- basic functionality (Ruslan)
 #
 #################################################################################
 

@@ -99,25 +99,25 @@ USAGE: ../hzb_mk_image.sh DEVICE_NAME_OR_MASK [DEVICE_NAME [DEVICE_NAME ...]]
 Example: ../hzb_mk_image.sh /dev/sdd? # all partitions on /dev/sdd
 
 Known devices are:
-sda      8:0    0 931.5G  0 disk 
-├─sda1   8:1    0   100M  0 part 
-├─sda2   8:2    0  52.5G  0 part 
-├─sda3   8:3    0   293G  0 part 
-├─sda4   8:4    0     1K  0 part 
-├─sda5   8:5    0  93.4G  0 part 
-├─sda6   8:6    0   293G  0 part 
-├─sda7   8:7    0   3.9G  0 part 
-└─sda8   8:8    0 195.8G  0 part 
-sdb      8:0    0    10T  0 disk 
-├─sdb1   8:1    0   100M  0 part 
-├─sdb2   8:2    0  52.5G  0 part 
+sda      8:0    0 931.5G  0 disk
+├─sda1   8:1    0   100M  0 part
+├─sda2   8:2    0  52.5G  0 part
+├─sda3   8:3    0   293G  0 part
+├─sda4   8:4    0     1K  0 part
+├─sda5   8:5    0  93.4G  0 part
+├─sda6   8:6    0   293G  0 part
+├─sda7   8:7    0   3.9G  0 part
+└─sda8   8:8    0 195.8G  0 part
+sdb      8:0    0    10T  0 disk
+├─sdb1   8:1    0   100M  0 part
+├─sdb2   8:2    0  52.5G  0 part
 ...
 ```
 
 5. Run `hzb_mk_image.sh` on selected partitions:
 ```
 # Save all partitions of sda device
-root@test> hzb_mk_image.sh /dev/sda? 
+root@test> hzb_mk_image.sh /dev/sda?
 ```
 
 ```

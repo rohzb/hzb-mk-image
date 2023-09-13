@@ -45,7 +45,7 @@ fi
 if [[ -d $TRANSFER ]]; then
     echo "The local image uses space of $(du -sh ${TRANSFER}) ."
     read -p "Should the local image files also deleted (y/n)?" -n 1 -r
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
+    if [[ $REPLY =~ ^[YyZz]$ ]]; then
         rm -rf $TRANSFER
     fi
 fi

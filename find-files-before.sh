@@ -2,7 +2,7 @@
 
 IFS="
 "
-if [[ $1 == "" ]]; then 
+if [[ $1 == "" ]]; then
 	DIR="."
 else
 	DIR=${1}

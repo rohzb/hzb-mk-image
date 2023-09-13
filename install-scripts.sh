@@ -3,7 +3,7 @@
 #
 # Helper script to install scripts to /usr/local/bin
 #
-# Version 1.0 	- basic functionality (Ruslan) 
+# Version 1.0 	- basic functionality (Ruslan)
 #
 #################################################################################
 
@@ -19,5 +19,4 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR
 
 # Do the installation
-install -m 0755 hzb_* /usr/local/bin
-
+install -m 0755 d*.sh f*.sh h*.sh r*.sh s*.sh /usr/local/bin

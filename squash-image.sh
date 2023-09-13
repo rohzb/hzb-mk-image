@@ -12,7 +12,7 @@ fi
 IFS="
 "
 
-USER=$1 
+USER=$1
 if [[ $USER == "" ]] ;
 then
  USER="ubuntu"
@@ -25,8 +25,7 @@ RESULT=0
 EXITCODE=0
 
 # nach Hostnamen fragen
-echo "What's the hostname of this machine?"
-read HOSTNAME
+read -p "What's the hostname of this machine?" HOSTNAME
 
 # Informationen zu den verbauten Disk ermitteln ...
 DISK_DEV=$(LANG=C; fdisk -l | grep "^Disk /dev/[h|s|n]" | awk -F, '{ print $1 }' | awk -F" " '{ print $2 " " $3 " " $4}' | tr ":" " ")
@@ -54,7 +53,7 @@ while true; do
                     else
                         MENU[$REPLY-1]="${DISKS[$REPLY-1]}${DISK_MODELS[$REPLY-1]}"
                     fi
-                    break 
+                    break
                 else
                     break
                 fi
@@ -77,14 +76,14 @@ if [[ ${#SELECTED_DISK[@]} -gt 0 ]]; then
     while true; do
         read -p "Do you wish to image this disk(s) to ${IMAGE_DIR}/${HOSTNAME} [y|n]? " yn
         case $yn in
-            [Yy]* ) 
+            [YyZz]* )
             	    chmod 777 "$WORKING_DIR"
                     mkdir -p -m 777 "${IMAGE_DIR}/${HOSTNAME}"
                     cd "${IMAGE_DIR}/${HOSTNAME}"
                     $(pwd)/../../scripts/hzb_pc_info.sh
                     RESULT=$?
                     test $RESULT -gt $EXITCODE && EXITCODE=$RESULT
-                    
+
                     # ausgewählte Disk parsen und Partitionen ermitteln
                     for i in $(seq 1 ${#SELECTED_DISK[@]})
                     do

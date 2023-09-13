@@ -12,7 +12,7 @@
 # Version 1.2 	- auto elevate privileges
 # Version 1.1 	- ask for deletion of on old images (Ruslan)
 #		- allow multiple input devices (Ruslan)
-# Version 1.0 	- basic functionality (Ruslan) 
+# Version 1.0 	- basic functionality (Ruslan)
 #
 #################################################################################
 
@@ -51,11 +51,11 @@ for DEVICE in $DEVICE_MASK; do
 	mkdir -p /tmp/dummy # ensure that the dummy directory exists
 
 	# check if an old image already there, ask to delete if yes
-	if [ -f $SQUASH ]; then 
+	if [ -f $SQUASH ]; then
 		while true; do
 			read -p "Image $SQUASH already exists! Do you want to delete it? [y/n] " yn
-			case $yn in 
-				[yY]) rm -f $SQUASH
+			case $yn in
+				[yYzZ]) rm -f $SQUASH
 					break;;
 				[nN]) break;;
 				* ) echo invalid response;;
@@ -64,7 +64,7 @@ for DEVICE in $DEVICE_MASK; do
 	fi
 
 	# create squashfs image
-	if [ ! -f $SQUASH ]; then 
+	if [ ! -f $SQUASH ]; then
 		mksquashfs /tmp/dummy $SQUASH -no-progress -Xcompression-level 2 -p "$IMAGE  f 0444 root root dd if=$DEVICE bs=4M conv=sync,noerror status=progress"
 		RESULT=$?
 		test $RESULT -gt $EXITCODE && EXITCODE=$RESULT

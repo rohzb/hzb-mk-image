@@ -8,17 +8,17 @@ function usage {
 DIR=$(dirname ${0})
 
 if [[ ! -z ${1} ]];
- then 
+ then
 	SRC="${1}"
 	shift
 else
 	usage
 fi
 if [[ ! -z $1 ]];
-then 
+then
 	DEST="${1}"
 	shift
-else 
+else
 	usage
 fi
 
